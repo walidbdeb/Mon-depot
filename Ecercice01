@@ -1,0 +1,38 @@
+import tkinter as tk
+
+# Fonction à appeler lorsqu'on sélectionne
+def afficher_selection():
+    # Récupère les indices des éléments sélectionnés
+    indices = listbox.curselection()
+    # Utiliser les indices pour récupérer les valeurs correspondantes
+    modele = [listbox.get(i) for i in indices]
+    # Afficher dans la console les concepts sélectionnés
+    print(f"Les concepts sélectionnés: {modele}")
+    # Mettre à jour le texte du label
+    label.config(text=", ".join(modele))
+
+# Création de l'interface
+window = tk.Tk()
+window.title("Concepts de Cybersécurité")
+window.geometry("400x400")
+window.configure(background="light blue")
+
+# Création de la ListBox
+listbox = tk.Listbox(window, selectmode=tk.MULTIPLE)
+
+# Insertion des concepts
+concepts = ["Phishing", "Malware", "Firewall", "Chiffrement", "VPN"]
+for modele in concepts:
+    listbox.insert(tk.END, modele)
+listbox.pack()
+
+# Label pour afficher les résultats (créé une seule fois)
+label = tk.Label(window, width=40, height=4, bg="white")
+label.pack(pady=10)
+
+# Bouton pour valider la sélection
+button = tk.Button(window, text="Afficher les concepts", command=afficher_selection)
+button.pack()
+
+# Lancer l'application
+window.mainloop()
